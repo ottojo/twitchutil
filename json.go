@@ -5,8 +5,12 @@ import (
 	"encoding/json"
 )
 
-func getJson(url string, target interface{}) error {
-	r, err := http.Get(url)
+func getJson(url string, target interface{}) (error) {
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Set("client-ID", clientId)
+	r, err := client.Do(req)
+
 	if err != nil {
 		return err
 	}
