@@ -1,11 +1,11 @@
 package twitchutil
 
 import (
-	"net/http"
 	"encoding/json"
+	"net/http"
 )
 
-func getJson(url string, target interface{}) (error) {
+func getJson(url string, target interface{}) error {
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Set("client-ID", clientId)
@@ -21,8 +21,8 @@ func getJson(url string, target interface{}) (error) {
 
 type following struct {
 	Follows []follow
-	Links   links  `json:"_Links"`
-	Total   int `json:"_Total"`
+	Links   links `json:"_Links"`
+	Total   int   `json:"_Total"`
 }
 
 type links struct {

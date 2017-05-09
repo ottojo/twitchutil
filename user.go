@@ -7,7 +7,7 @@ import (
 
 func IsInChannel(user string, channel string) bool {
 	response := new(chattersResponse)
-	getJson("https://tmi.twitch.tv/group/user/" + channel + "/chatters", &response)
+	getJson("https://tmi.twitch.tv/group/user/"+channel+"/chatters", &response)
 	groups := response.Chatters
 
 	groupsValuePtr := reflect.ValueOf(&groups)
@@ -17,8 +17,8 @@ func IsInChannel(user string, channel string) bool {
 		group := groupsValue.Field(i)
 		groupArray := group.Interface().([]string)
 		for u := 0; u < len(groupArray); u++ {
-			if (strings.EqualFold(groupArray[u], user)) {
-				return true;
+			if strings.EqualFold(groupArray[u], user) {
+				return true
 			}
 		}
 	}
