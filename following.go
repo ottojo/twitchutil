@@ -10,7 +10,7 @@ func FollowingChannels(user string) []string {
 	for i := 0; i < len(follows); i++ {
 		result = append(result, follows[i].Channel.Name)
 	}
-	for len(result) < response.Total {
+	for len(response.Follows) > 0 {
 		url := response.Links.Next
 		response = new(following)
 		getJson(url, &response)
